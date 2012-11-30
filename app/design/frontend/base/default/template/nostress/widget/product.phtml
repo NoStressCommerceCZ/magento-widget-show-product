@@ -1,0 +1,57 @@
+<?php 
+/** 
+ * Magento Module developed by NoStress Commerce 
+ * 
+ * NOTICE OF LICENSE 
+ * 
+ * This source file is subject to the Open Software License (OSL 3.0) 
+ * that is bundled with this package in the file LICENSE.txt. 
+ * It is also available through the world-wide-web at this URL: 
+ * http://opensource.org/licenses/osl-3.0.php 
+ * If you did of the license and are unable to 
+ * obtain it through the world-wide-web, please send an email 
+ * to info@nostresscommerce.cz so we can send you a copy immediately. 
+ * 
+ * @copyright Copyright (c) 2012 NoStress Commerce (http://www.nostresscommerce.cz) 
+ * 
+ */
+
+
+$collection = Mage::getModel('catalog/product')->getCollection();
+$collection->getSelect()->where('sku=?', $this->getSku())->limit(1);
+$product = $collection->getFirstItem();
+
+if ( $product->getId() ):
+
+	$product->load( $product->getId() );
+
+	$image_type = $this->getImageType();
+	$image_width = $this->getImageWidth();
+	$image_height = $this->getImageHeight();
+	
+	if (!$image_width) $image_width = 115;		// default width
+	if (!$image_height) $image_height = 146;	// default height
+
+	$product_link = $product->getProductUrl();
+	$product_name = $this->stripTags($product->getName(), null, true);
+	$product_image = $this->helper('catalog/image')->init($product, $image_type)->resize($image_width, $image_height);
+	
+	$product_image_label = $this->getProductAlt();
+	if ( !$product_image_label ) $product_image_label = $this->stripTags($this->getImageLabel($product, $image_type), null, true);
+	if ( !$product_image_label ) $product_image_label = $product_name;
+	
+	$product_price_block = $this->getPriceHtml($product, true);
+	
+?>
+<a href="<?php echo $product_link; ?>">
+	<img
+		src="<?php echo $product_image; ?>"
+		alt="<?php echo $product_image_label; ?>"
+		width="<?php echo $image_width; ?>"
+		height="<?php echo $image_height; ?>"
+	/>
+</a>
+<h3><a href="<?php echo $product_link; ?>"><?php echo $product_name; ?></a></h3>
+
+<?php echo $product_price_block; ?>
+<?php endif;?>

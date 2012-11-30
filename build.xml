@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+http://ant.apache.org
+
+ANT BUILD SCRIPT
+
+On Linux just install ant package trough your favorite package manager.
+
+On Windows you can use great instalator provided on URL
+  http://code.google.com/p/winant/downloads/list
+
+ -->
+<project name="Nostress_Widgetproduct" default="build">
+
+  <property name="module_name" value="Nostress_Widgetproduct" />
+  <!-- 
+    Set location where you wish to deploy module's code
+  -->
+  <!-- property name="prop.deploy.dir" location="C:/home/dev/r1/deploy" / -->
+	<!-- 
+    Set location where you wish to store distribution zip file
+  -->
+	<property name="dist_dir" location="../dist" />
+
+	<target name="build">
+    <antcall target="usage" ></antcall>
+  </target>
+
+  <target name="usage">
+    <echo>
+      ant -f build.xml usage    -- it shows this help message
+      ant -f build.xml check    -- it shows set deploy directory
+      ant -f build.xml deploy -Dprop.deploy.dir=/any/path   -- it deploys module's code to deployment directory
+    </echo>
+  </target>
+  
+  <target name="check">
+    <echo>
+      Base dir:     ${basedir}
+        -- here we are
+      Deploy dir:   ${prop.deploy.dir}
+        -- there will be module deployed
+    </echo>
+  </target>
+  
+  <target name="deploy" description="deploy-Nostress_Widgetproduct">
+    <echo>Widgetproduct</echo>
+    <copy todir="${prop.deploy.dir}" verbose="true">
+		  <fileset dir=".">
+		    <include name="**/*"/>
+		    <exclude name="build.xml"/>
+		  </fileset>
+		</copy>
+  </target>
+  
+</project>

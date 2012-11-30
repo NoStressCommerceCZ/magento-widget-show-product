@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Nostress_Widgetproduct>
+            <active>true</active>
+            <codePool>community</codePool>
+  		</Nostress_Widgetproduct>
+    </modules>
+</config> 

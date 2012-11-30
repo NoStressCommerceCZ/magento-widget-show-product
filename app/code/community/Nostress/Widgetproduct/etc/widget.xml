@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+	<nostress_widgetproduct type="nostress_widgetproduct/product">
+		<name>Show product</name>
+		<description type="desc">Adds a product information in to page</description>
+
+		<parameters>
+			
+			<template translate="label">
+				<label>Frontend Template</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<values>
+					<text translate="label">
+						<value>nostress/widget/product.phtml</value>
+						<label>Image / Product name / Price template</label>
+					</text>
+				</values>
+			</template>
+			
+			<sku translate="label">
+				<label>SKU to display</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+			</sku>
+			
+			<product_alt translate="label">
+				<label>Alternative text</label>
+				<visible>1</visible>
+				<required>0</required>
+				<type>text</type>
+			</product_alt>
+			
+			<image_type translate="label">
+				<label>Image type</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<values>
+                    <image translate="label">
+                        <value>image</value>
+                        <label>Base Image</label>
+                    </image>
+                    <small_image translate="label">
+                        <value>small_image</value>
+                        <label>Small Image</label>
+                    </small_image>
+                    <thumbnail translate="label">
+                        <value>thumbnail</value>
+                        <label>Thumbnail</label>
+                    </thumbnail>
+                </values>
+            </image_type>
+            
+            <image_width translate="label">
+				<label>Image width</label>
+				<visible>1</visible>
+				<required>0</required>
+				<type>text</type>
+            </image_width>
+            
+            <image_height translate="label">
+				<label>Image height</label>
+				<visible>1</visible>
+				<required>0</required>
+				<type>text</type>
+            </image_height>
+            
+		</parameters>
+
+	</nostress_widgetproduct>
+</widgets>
