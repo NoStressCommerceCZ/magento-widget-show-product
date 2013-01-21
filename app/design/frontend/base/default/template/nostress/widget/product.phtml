@@ -25,7 +25,7 @@ $collection
   ->addFinalPrice()
   ->addTaxPercents()
   ->addUrlRewrite();
-$collection->getSelect()->where('sku=?', $this->getSku())->limit(1)->limit(1);
+$collection->getSelect()->where('sku=?', $this->getSku())->limit(1);
 $product = $collection->getFirstItem();
 
 if ( $product->getId() ):
