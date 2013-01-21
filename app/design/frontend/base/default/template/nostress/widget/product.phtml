@@ -17,13 +17,18 @@
  */
 
 
-$collection = Mage::getModel('catalog/product')->getCollection();
-$collection->getSelect()->where('sku=?', $this->getSku())->limit(1);
+$collection = Mage::getResourceModel('catalog/product_collection');
+
+$collection
+  ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+  ->addMinimalPrice()
+  ->addFinalPrice()
+  ->addTaxPercents()
+  ->addUrlRewrite();
+$collection->getSelect()->where('sku=?', $this->getSku())->limit(1)->limit(1);
 $product = $collection->getFirstItem();
 
 if ( $product->getId() ):
-
-	$product->load( $product->getId() );
 
 	$image_type = $this->getImageType();
 	$image_width = $this->getImageWidth();
